@@ -102,11 +102,11 @@ syslogParser.parse(withYear, function(parsedMessage){
         facility: 'auth',
         severity: 'emerg',
         type: 'RFC3164',
-        time: undefined,
         host: '22:21:02:',
         appName: '%ASA-6-302013',
         message: 'Built inbound TCP connection 401 for outside:123.123.123.123/4413 (123.123.123.123/4413) to net:BOX/25 (BOX/25)' };
 
+   delete parsedMessage.time;
    assert.deepEqual(parsedMessage, expectedData);
 });
 
@@ -124,6 +124,26 @@ syslogParser.parse(withSpaces, function(parsedMessage){
         message: '    0    11,03/15/12,11:22:38,§ó·s,10.10.10.171,,40C6A91373B6,' };
 
     delete parsedMessage.time;
+    assert.deepEqual(parsedMessage, expectedData);
+
+});
+
+var withISO8601 = "<13>2016-08-16T19:46:54Z e68a5343be05 coco[1]: POST /db/course_instance/57b36cca361c4e290051bdc6/members 422 148ms";
+syslogParser.parse(withISO8601, function(parsedMessage){
+    var expectedData = {
+        originalMessage: withISO8601,
+        prival: 13,
+        facilityID: 1,
+        severityID: 5,
+        facility: 'user',
+        severity: 'notice',
+        type: 'RFC3164',
+        host: 'e68a5343be05',
+        appName: 'coco',
+        pid: 1,
+        time: new Date('2016-08-16T19:46:54Z'),
+        message: 'POST /db/course_instance/57b36cca361c4e290051bdc6/members 422 148ms' };
+
     assert.deepEqual(parsedMessage, expectedData);
 
 });
