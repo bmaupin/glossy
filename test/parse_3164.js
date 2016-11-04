@@ -148,3 +148,23 @@ syslogParser.parse(withISO8601, function(parsedMessage){
 
 });
 
+var withRFC3339 = "<13>2012-01-24T21:36:11.860808+01:00 e68a5343be05 coco[1]: POST /db/course_instance/57b36cca361c4e290051bdc6/members 422 148ms";
+syslogParser.parse(withRFC3339, function(parsedMessage) {
+    var expectedData = {
+        originalMessage: withRFC3339,
+        prival: 13,
+        facilityID: 1,
+        severityID: 5,
+        facility: 'user',
+        severity: 'notice',
+        type: 'RFC3164',
+        host: 'e68a5343be05',
+        appName: 'coco',
+        pid: 1,
+        time: new Date(1327437371860),
+        message: 'POST /db/course_instance/57b36cca361c4e290051bdc6/members 422 148ms' };
+
+    assert.deepEqual(parsedMessage, expectedData);
+
+});
+
