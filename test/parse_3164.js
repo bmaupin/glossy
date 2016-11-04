@@ -128,7 +128,7 @@ syslogParser.parse(withSpaces, function(parsedMessage){
 
 });
 
-var withISO8601 = "<13>2016-08-16T19:46:54Z e68a5343be05 coco[1]: POST /db/course_instance/57b36cca361c4e290051bdc6/members 422 148ms";
+var withISO8601 = "<13>2016-08-16T19:46:54.231Z e68a5343be05 coco[1]: POST /db/course_instance/57b36cca361c4e290051bdc6/members 422 148ms";
 syslogParser.parse(withISO8601, function(parsedMessage){
     var expectedData = {
         originalMessage: withISO8601,
@@ -141,7 +141,7 @@ syslogParser.parse(withISO8601, function(parsedMessage){
         host: 'e68a5343be05',
         appName: 'coco',
         pid: 1,
-        time: new Date('2016-08-16T19:46:54Z'),
+        time: new Date('2016-08-16T19:46:54.231Z'),
         message: 'POST /db/course_instance/57b36cca361c4e290051bdc6/members 422 148ms' };
 
     assert.deepEqual(parsedMessage, expectedData);
