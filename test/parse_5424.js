@@ -119,6 +119,6 @@ syslogParser.parse(withInvalidSD, function(parsedMessage){
         appName: 'evntslog',
         pid: null,
         msgID: 'ID47',
-        message: '[exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"] BOMAn application event log entry...' };
+        message: 'abc [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"] BOMAn application event log entry...' };
     assert.deepEqual(parsedMessage, expectedData);
 });

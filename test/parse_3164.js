@@ -76,6 +76,30 @@ syslogParser.parse(withPidCommand, function(parsedMessage){
 
 });
 
+var withVersion = "<34>0 Oct 11 22:14:15 mymachine su[321]: 'su root' failed for lonvick on /dev/pts/8";
+syslogParser.parse(withVersion, function(parsedMessage){
+    var expectedData = {
+        originalMessage: withVersion,
+        prival: 34,
+        facilityID: 4,
+        severityID: 2,
+        facility: 'auth',
+        severity: 'crit',
+        type: 'RFC3164',
+        host: 'mymachine',
+        appName: 'su',
+        pid: 321,
+        message: "'su root' failed for lonvick on /dev/pts/8" };
+
+    var parsedDate = parsedMessage.time;
+    delete parsedMessage.time;
+
+    assert.equal(parsedDate.getUTCMonth(), 9);
+    assert.equal(parsedDate.getUTCHours(), 20);
+    assert.deepEqual(parsedMessage, expectedData);
+
+});
+
 var withDifficultTime = "<191>94103: 51w2d: DHCPD: assigned IP address 10.10.1.94 to client 0100.01c4.21d3.b3";
 syslogParser.parse(withDifficultTime, function(parsedMessage){
     var expectedData = {
