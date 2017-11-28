@@ -22,3 +22,15 @@ assert.deepEqual(syslogParser.parseStructure(doubleStructure), {
          'class': 'high'
      }
 });
+
+var noStructure = '[exampleSDID@32473] ';
+assert.deepEqual(syslogParser.parseStructure(noStructure), {
+    'exampleSDID@32473': {
+    }
+});
+
+var weirdStructure = '[exampleSDID@32473 ]  ] ] ] ] ] ';
+assert.deepEqual(syslogParser.parseStructure(noStructure), {
+    'exampleSDID@32473': {
+    }
+});
