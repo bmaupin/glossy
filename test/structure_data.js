@@ -30,7 +30,7 @@ assert.deepEqual(syslogParser.parseStructure(noStructure), {
 });
 
 var weirdStructure = '[exampleSDID@32473 ]  ] ] ] ] ] ';
-assert.deepEqual(syslogParser.parseStructure(noStructure), {
+assert.deepEqual(syslogParser.parseStructure(weirdStructure), {
     'exampleSDID@32473': {
     }
 });
