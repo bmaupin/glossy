@@ -122,3 +122,27 @@ syslogParser.parse(withInvalidSD, function(parsedMessage){
         message: 'abc [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"] BOMAn application event log entry...' };
     assert.deepEqual(parsedMessage, expectedData);
 });
+
+var withWeirdVersion = '<34>0 2003-10-11T22:14:15.003Z mymachine.example.com evntslog - ID47 [exampleSDID@32473] message';
+syslogParser.parse(withWeirdVersion, function(parsedMessage){
+    var expectedStructuredData = {
+        'exampleSDID@32473': {
+        }
+    };
+    var expectedData = {
+        originalMessage: withWeirdVersion,
+        prival: 34,
+        facilityID: 4,
+        severityID: 2,
+        facility: 'auth',
+        severity: 'crit',
+        type: 'RFC5424',
+        time:  new Date('2003-10-11T22:14:15.003Z'),
+        host: 'mymachine.example.com',
+        appName: 'evntslog',
+        pid: null,
+        msgID: 'ID47',
+        structuredData: expectedStructuredData,  //FIXME Both sets should be there
+        message: 'message' };
+    assert.deepEqual(parsedMessage, expectedData);
+});
