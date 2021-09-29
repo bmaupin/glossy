@@ -1,12 +1,12 @@
 {
     "name": "@myndzi/glossy",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "Syslog parser and producer",
     "keywords": [
         "syslog",
         "logging"
     ],
-    "url": "http://github.com/squeeks/glossy",
+    "url": "http://github.com/myndzi/glossy",
     "main": "./index.js",
     "author": "Squeeks <privacymyass@gmail.com>",
     "maintainers": [
@@ -58,10 +58,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "http://github.com/squeeks/glossy.git"
-    },
-    "bugs": {
-        "url": "http://github.com/squeeks/glossy/issues"
+        "url": "http://github.com/myndzi/glossy.git"
     },
     "licenses": [
         {
@@ -70,6 +67,6 @@
         }
     ],
     "engines": {
-        "node": ">= 0.2.5"
+        "node": ">= 0.10.0"
     }
 }
