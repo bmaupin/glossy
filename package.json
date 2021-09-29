@@ -1,6 +1,6 @@
 {
     "name": "@myndzi/glossy",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "Syslog parser and producer",
     "keywords": [
         "syslog",
