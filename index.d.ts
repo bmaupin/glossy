@@ -1,4 +1,4 @@
-import { Buffer } from 'node';
+/// <reference types="node" />
 
 export interface ProduceOptions {
     facility?: string;
@@ -10,7 +10,7 @@ export interface ProduceOptions {
     type?: string;
 }
 
-export interface ProducerOptions {
+export interface MessageOptions {
     facility?: string;
     severity?: string;
     prival?: number;
@@ -31,24 +31,24 @@ export interface ProducerCallback {
 export class Produce {
     constructor(options: ProduceOptions | string);
 
-    alert(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    alert(options: MessageOptions, callback?: ProducerCallback): string | void;
 
-    crit(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    crit(options: MessageOptions, callback?: ProducerCallback): string | void;
 
-    debug(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    debug(options: MessageOptions, callback?: ProducerCallback): string | void;
 
-    emergency(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    emergency(options: MessageOptions, callback?: ProducerCallback): string | void;
 
-    info(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    info(options: MessageOptions, callback?: ProducerCallback): string | void;
 
-    notice(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    notice(options: MessageOptions, callback?: ProducerCallback): string | void;
 
-    produce(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    produce(options: MessageOptions, callback?: ProducerCallback): string | void;
 
-    warn(options: ProducerOptions, callback?: ProducerCallback): string | void;
+    warn(options: MessageOptions, callback?: ProducerCallback): string | void;
 }
 
-export interface ParserCallBack {
+export interface ParserCallback {
     (parsedMessage: SyslogMessage): void;
 }
 
@@ -65,5 +65,5 @@ export interface SyslogMessage {
 }
 
 export namespace Parse {
-    function parse(rawMessage: string | Buffer, callback?: ParserCallBack): SyslogMessage | void;
+    function parse(rawMessage: string | Buffer, callback?: ParserCallback): SyslogMessage | void;
 }

@@ -69,5 +69,5 @@
     "engines": {
         "node": ">= 0.10.0"
     },
-    "types": "./dist/index.d.ts"
+    "types": "./index.d.ts"
 }
